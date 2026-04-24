@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusPulse – Biometric Attention Tracking</title>
+  <meta name="description" content="FocusPulse is a biometric attention tracking system for students. Real-time focus analysis using GSR, heart rate, and motion sensors." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <span class="logo-pulse"></span>
+        FocusPulse
+      </a>
+      <ul class="nav__links">
+        <li><a href="#about"   data-en="About"    data-tr="Hakkında">About</a></li>
+        <li><a href="#how"     data-en="How It Works" data-tr="Nasıl Çalışır">How It Works</a></li>
+        <li><a href="#features" data-en="Features"  data-tr="Özellikler">Features</a></li>
+        <li><a href="#team"    data-en="Team"     data-tr="Ekip">Team</a></li>
+        <li><a href="#contact" data-en="Contact"   data-tr="İletişim">Contact</a></li>
+      </ul>
+      <div class="nav__controls">
+        <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+          <span class="lang-en">EN</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-tr">TR</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <ul>
+        <li><a href="#about"    data-en="About"       data-tr="Hakkında">About</a></li>
+        <li><a href="#how"      data-en="How It Works" data-tr="Nasıl Çalışır">How It Works</a></li>
+        <li><a href="#features" data-en="Features"    data-tr="Özellikler">Features</a></li>
+        <li><a href="#team"     data-en="Team"        data-tr="Ekip">Team</a></li>
+        <li><a href="#contact"  data-en="Contact"     data-tr="İletişim">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="orb orb--1"></div>
+      <div class="orb orb--2"></div>
+      <div class="orb orb--3"></div>
+      <canvas id="waveCanvas"></canvas>
+    </div>
+    <div class="hero__content reveal">
+      <div class="hero__badge">
+        <span class="badge-dot"></span>
+        <span data-en="Biometric Focus Technology" data-tr="Biyometrik Odak Teknolojisi">Biometric Focus Technology</span>
+      </div>
+      <h1 class="hero__title">
+        <span data-en="Unlock Your" data-tr="Odağınızın">Unlock Your</span><br/>
+        <em data-en="True Focus" data-tr="Gücünü">True Focus</em>
+      </h1>
+      <p class="hero__sub" data-en="FocusPulse tracks your attention in real time using biometric sensors — so you can study smarter, not harder." data-tr="FocusPulse, biyometrik sensörler aracılığıyla dikkatinizi gerçek zamanlı izler; böylece daha akıllıca çalışabilirsiniz.">
+        FocusPulse tracks your attention in real time using biometric sensors — so you can study smarter, not harder.
+      </p>
+      <div class="hero__cta">
+        <a href="#how" class="btn btn--primary" data-en="See How It Works" data-tr="Nasıl Çalışır?">See How It Works</a>
+        <a href="#contact" class="btn btn--ghost" data-en="Get Early Access" data-tr="Erken Erişim Al">Get Early Access</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num" data-target="6">0</span><span class="stat__unit" data-en="min avg focus" data-tr="dk ort. odak">min avg focus</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num" data-target="65">0</span><span class="stat__pct">%</span><span class="stat__unit" data-en="students distracted" data-tr="öğrenci dağılıyor">students distracted</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num" data-target="3">0</span><span class="stat__unit" data-en="sensors used" data-tr="sensör kullanılıyor">sensors used</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__device reveal-delay">
+      <div class="device-card">
+        <div class="device-screen">
+          <div class="screen-header">
+            <span class="screen-dot red"></span>
+            <span class="screen-dot yellow"></span>
+            <span class="screen-dot green"></span>
+            <span class="screen-title">FocusPulse Live</span>
+          </div>
+          <div class="screen-metric">
+            <span class="metric-label" data-en="Focus Level" data-tr="Odak Seviyesi">Focus Level</span>
+            <div class="metric-bar-wrap">
+              <div class="metric-bar" id="focusBar"></div>
+            </div>
+            <span class="metric-value" id="focusValue">87%</span>
+          </div>
+          <div class="screen-metric">
+            <span class="metric-label">GSR</span>
+            <div class="metric-bar-wrap">
+              <div class="metric-bar metric-bar--gsr" id="gsrBar"></div>
+            </div>
+            <span class="metric-value" id="gsrValue">72%</span>
+          </div>
+          <div class="screen-metric">
+            <span class="metric-label" data-en="Heart Rate" data-tr="Kalp Atışı">Heart Rate</span>
+            <div class="metric-bar-wrap">
+              <div class="metric-bar metric-bar--hr" id="hrBar"></div>
+            </div>
+            <span class="metric-value" id="hrValue">68 bpm</span>
+          </div>
+          <div class="screen-pulse">
+            <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+              <polyline id="pulseLine" points="" fill="none" stroke="url(#pulseGrad)" stroke-width="2"/>
+              <defs>
+                <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.2"/>
+                  <stop offset="50%" stop-color="#a855f7" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="screen-status" id="focusStatus">
+            <span class="status-dot"></span>
+            <span data-en="In Focus" data-tr="Odakta">In Focus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / PROBLEM -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-label reveal" data-en="The Problem" data-tr="Problem">The Problem</div>
+      <div class="about__grid">
+        <div class="about__text reveal">
+          <h2 data-en="Attention is the New Superpower" data-tr="Dikkat, Yeni Süper Güçtür">Attention is the New Superpower</h2>
+          <p data-en="In today's hyperconnected world, maintaining focus has become one of the most critical yet underserved challenges for students. Distractions are everywhere — and most people don't even realize when their focus has slipped." data-tr="Günümüzün aşırı bağlantılı dünyasında, odaklanmayı sürdürmek öğrenciler için en kritik ancak en az desteklenen zorluklardan biri haline geldi. Dikkat dağıtıcılar her yerde — ve çoğu insan, odağının kaydığını bile fark etmiyor.">
+            In today's hyperconnected world, maintaining focus has become one of the most critical yet underserved challenges for students. Distractions are everywhere — and most people don't even realize when their focus has slipped.
+          </p>
+          <p data-en="FocusPulse bridges the gap between feeling unfocused and doing something about it — using real biometric data, not guesswork." data-tr="FocusPulse, odaksız hissetmek ile bunu çözmek arasındaki boşluğu kapatır — tahmine değil, gerçek biyometrik veriye dayanarak.">
+            FocusPulse bridges the gap between feeling unfocused and doing something about it — using real biometric data, not guesswork.
+          </p>
+        </div>
+        <div class="about__cards reveal-delay">
+          <div class="problem-card">
+            <div class="problem-card__icon">⏱</div>
+            <div class="problem-card__num counter" data-target="6">0</div>
+            <div class="problem-card__label" data-en="minutes — average human focus span" data-tr="dakika — ortalama insan odak süresi">minutes — average human focus span</div>
+          </div>
+          <div class="problem-card problem-card--alt">
+            <div class="problem-card__icon">📉</div>
+            <div class="problem-card__num"><span class="counter" data-target="65">0</span>%</div>
+            <div class="problem-card__label" data-en="of students report chronic distraction issues" data-tr="öğrenci kronik dikkat dağınıklığı yaşadığını bildiriyor">of students report chronic distraction issues</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how" id="how">
+    <div class="container">
+      <div class="section-label reveal" data-en="Process" data-tr="Süreç">Process</div>
+      <h2 class="section-title reveal" data-en="Three Steps to Peak Performance" data-tr="Zirve Performansa Üç Adım">Three Steps to Peak Performance</h2>
+      <div class="how__steps">
+        <div class="step reveal">
+          <div class="step__num">01</div>
+          <div class="step__icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/><circle cx="24" cy="24" r="8" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5"/><path d="M24 16v-4M24 36v-4M16 24h-4M36 24h-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 data-en="Sense" data-tr="Algıla">Sense</h3>
+          <p data-en="GSR, heart rate, and motion sensors on an ESP32 microcontroller continuously capture your biometric signals." data-tr="ESP32 mikrodenetleyici üzerindeki GSR, kalp hızı ve hareket sensörleri, biyometrik sinyallerinizi sürekli kaydeder.">GSR, heart rate, and motion sensors on an ESP32 microcontroller continuously capture your biometric signals.</p>
+          <div class="step__tags">
+            <span>GSR</span><span data-en="Heart Rate" data-tr="Kalp Hızı">Heart Rate</span><span data-en="Motion" data-tr="Hareket">Motion</span>
+          </div>
+        </div>
+        <div class="step__connector reveal-delay">
+          <div class="connector-line"></div>
+          <div class="connector-arrow">→</div>
+        </div>
+        <div class="step reveal-delay">
+          <div class="step__num">02</div>
+          <div class="step__icon">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M16 24l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 16h4M28 20h4M28 24h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>
+          </div>
+          <h3 data-en="Analyze" data-tr="Analiz Et">Analyze</h3>
+          <p data-en="The mobile app processes your data in real time, calculating your attention level and detecting focus drops instantly." data-tr="Mobil uygulama, verilerinizi gerçek zamanlı işler; dikkat seviyenizi hesaplar ve odak düşüşlerini anında tespit eder.">The mobile app processes your data in real time, calculating your attention level and detecting focus drops instantly.</p>
+          <div class="step__tags">
+            <span data-en="Real-time AI" data-tr="Gerçek Zamanlı AI">Real-time AI</span><span data-en="Pattern Detection" data-tr="Örüntü Tespiti">Pattern Detection</span>
+          </div>
+        </div>
+        <div class="step__connector reveal-delay">
+          <div class="connector-line"></div>
+          <div class="connector-arrow">→</div>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">03</div>
+          <div class="step__icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 8l3.5 7 7.5 1-5.5 5.5 1.5 7.5L24 26l-7 3.5 1.5-7.5L13 16.5l7.5-1L24 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M16 36h16M20 40h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>
+          </div>
+          <h3 data-en="Respond" data-tr="Yanıt Ver">Respond</h3>
+          <p data-en="Intelligent alerts notify you when focus drops. Gamification elements keep you motivated and on track toward your goals." data-tr="Akıllı uyarılar, odağınız düştüğünde sizi bilgilendirir. Oyunlaştırma unsurları motivasyonunuzu yüksek tutar.">Intelligent alerts notify you when focus drops. Gamification elements keep you motivated and on track toward your goals.</p>
+          <div class="step__tags">
+            <span data-en="Smart Alerts" data-tr="Akıllı Uyarılar">Smart Alerts</span><span data-en="Gamification" data-tr="Oyunlaştırma">Gamification</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-label reveal" data-en="Features" data-tr="Özellikler">Features</div>
+      <h2 class="section-title reveal" data-en="Built for Real Performance" data-tr="Gerçek Performans İçin Tasarlandı">Built for Real Performance</h2>
+      <div class="features__grid">
+        <div class="feature-card reveal">
+          <div class="feature-card__glow"></div>
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z" stroke="currentColor" stroke-width="1.5"/><path d="M16 10v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 data-en="Real-Time Tracking" data-tr="Gerçek Zamanlı İzleme">Real-Time Tracking</h3>
+          <p data-en="Continuous biometric monitoring with instant feedback — your focus score updates every second." data-tr="Anlık geri bildirimle sürekli biyometrik izleme — odak puanınız her saniye güncellenir.">Continuous biometric monitoring with instant feedback — your focus score updates every second.</p>
+        </div>
+        <div class="feature-card reveal-delay">
+          <div class="feature-card__glow feature-card__glow--blue"></div>
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 13h24M9 8V5M23 8V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="20" r="2" fill="currentColor" fill-opacity="0.3" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3 data-en="Multi-Sensor System" data-tr="Çok Sensörlü Sistem">Multi-Sensor System</h3>
+          <p data-en="GSR, heart rate, and motion sensors fused together for a comprehensive attention model that no single sensor could achieve." data-tr="GSR, kalp hızı ve hareket sensörleri, tek bir sensörün sağlayamayacağı kapsamlı bir dikkat modeli için birleştirildi.">GSR, heart rate, and motion sensors fused together for a comprehensive attention model that no single sensor could achieve.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-card__glow feature-card__glow--indigo"></div>
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 3l2.8 8.5H28l-7.3 5.3 2.8 8.5L16 20l-7.5 5.3 2.8-8.5L4 11.5h9.2L16 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 data-en="Gamification Engine" data-tr="Oyunlaştırma Motoru">Gamification Engine</h3>
+          <p data-en="Earn points, unlock achievements, and build streaks as you improve your focus — turning hard work into a rewarding game." data-tr="Odağınızı geliştirdikçe puan kazanın, başarımlar açın ve seriler oluşturun — çalışmayı ödüllendirici bir oyuna dönüştürün.">Earn points, unlock achievements, and build streaks as you improve your focus — turning hard work into a rewarding game.</p>
+        </div>
+        <div class="feature-card reveal-delay">
+          <div class="feature-card__glow feature-card__glow--purple"></div>
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M28 16H4M16 4l-4 12 4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.4"/></svg>
+          </div>
+          <h3 data-en="Low-Cost Hardware" data-tr="Düşük Maliyetli Donanım">Low-Cost Hardware</h3>
+          <p data-en="Built on the affordable ESP32 platform, FocusPulse is accessible to students and institutions everywhere — premium tech without the premium price." data-tr="Uygun fiyatlı ESP32 platformu üzerine kurulu FocusPulse, her yerdeki öğrenciler ve kurumlar için erişilebilir.">Built on the affordable ESP32 platform, FocusPulse is accessible to students and institutions everywhere — premium tech without the premium price.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section team" id="team">
+    <div class="container">
+      <div class="section-label reveal" data-en="The Team" data-tr="Ekip">The Team</div>
+      <h2 class="section-title reveal">Nextus Tech</h2>
+      <p class="section-sub reveal" data-en="We're a student-led team passionate about combining hardware, software, and behavioral science to solve real focus problems." data-tr="Donanım, yazılım ve davranış bilimini birleştirerek gerçek odak sorunlarını çözmeye kararlı, öğrenci liderliğindeki bir ekibiz.">We're a student-led team passionate about combining hardware, software, and behavioral science to solve real focus problems.</p>
+      <div class="team__grid">
+        <div class="team-card reveal">
+          <div class="team-card__avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-inner">DH</div>
+          </div>
+          <h3>Duru Hacıoğlu</h3>
+          <span class="team-card__role" data-en="Co-Founder & Hardware Lead" data-tr="Kurucu Ortak & Donanım Lideri">Co-Founder & Hardware Lead</span>
+          <p data-en="Sensor integration, ESP32 firmware, and biometric signal processing." data-tr="Sensör entegrasyonu, ESP32 firmware ve biyometrik sinyal işleme.">Sensor integration, ESP32 firmware, and biometric signal processing.</p>
+        </div>
+        <div class="team-card reveal-delay">
+          <div class="team-card__avatar">
+            <div class="avatar-ring avatar-ring--alt"></div>
+            <div class="avatar-inner avatar-inner--alt">HY</div>
+          </div>
+          <h3>Hüsna Yatmaz</h3>
+          <span class="team-card__role" data-en="Co-Founder & Software Lead" data-tr="Kurucu Ortak & Yazılım Lideri">Co-Founder & Software Lead</span>
+          <p data-en="Mobile app development, real-time data analysis, and gamification systems." data-tr="Mobil uygulama geliştirme, gerçek zamanlı veri analizi ve oyunlaştırma sistemleri.">Mobile app development, real-time data analysis, and gamification systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-label reveal" data-en="Contact" data-tr="İletişim">Contact</div>
+      <h2 class="section-title reveal" data-en="Let's Build the Future of Focus" data-tr="Odağın Geleceğini Birlikte İnşa Edelim">Let's Build the Future of Focus</h2>
+      <div class="contact__grid">
+        <div class="contact__info reveal">
+          <p data-en="Whether you're an investor, a school, or just curious — we'd love to hear from you." data-tr="İster yatırımcı, ister okul ya da sadece meraklı olun — sizden haber almaktan mutluluk duyarız.">Whether you're an investor, a school, or just curious — we'd love to hear from you.</p>
+          <a class="contact__email" href="mailto:nextustech2@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            nextustech2@gmail.com
+          </a>
+          <div class="contact__brand">
+            <span class="logo-pulse logo-pulse--sm"></span>
+            <span>FocusPulse by Nextus Tech</span>
+          </div>
+        </div>
+        <form class="contact__form reveal-delay" id="contactForm">
+          <div class="form-group">
+            <label for="name" data-en="Your Name" data-tr="Adınız">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="—" />
+          </div>
+          <div class="form-group">
+            <label for="email" data-en="Email Address" data-tr="E-posta Adresi">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="—" />
+          </div>
+          <div class="form-group">
+            <label for="message" data-en="Message" data-tr="Mesajınız">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="—"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" data-en="Send Message" data-tr="Gönder">Send Message</button>
+          <div class="form-success" id="formSuccess" hidden>
+            <span data-en="Message sent! We'll be in touch." data-tr="Mesaj gönderildi! Yakında sizinle iletişime geçeceğiz.">Message sent! We'll be in touch.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__brand">
+          <span class="logo-pulse logo-pulse--sm"></span>
+          FocusPulse
+        </span>
+        <span class="footer__copy" data-en="© 2025 Nextus Tech. All rights reserved." data-tr="© 2025 Nextus Tech. Tüm hakları saklıdır.">© 2025 Nextus Tech. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
